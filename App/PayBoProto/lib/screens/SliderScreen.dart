@@ -1,4 +1,5 @@
 import 'package:PayBoProto/classes/Category.dart';
+import 'package:PayBoProto/classes/Contact.dart';
 import 'package:PayBoProto/classes/Event.dart';
 import 'package:PayBoProto/classes/SubCategory.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class _SliderScreenState extends State<SliderScreen>
       avanaSubCategoryList,
       donationSubCategoryList;
   List<Category> categories;
+  Contact plancon, enigcon, tvsmcon;
   Event plantation, enigmaQuiz, tvsmInstrument;
   List<Event> events;
 
@@ -146,27 +148,47 @@ class _SliderScreenState extends State<SliderScreen>
         categoryName: "Donation",
         subCategoryList: donationSubCategoryList);
     categories = [technicals, culturals, avana, donation];
+
+    plancon = new Contact(
+      contactName: "Shreyas Nakshataram",
+      contactEmail: "shreyas@gmail.com",
+      contactNumber: "1234567890",
+    );
+    enigcon = new Contact(
+      contactName: "Kartik Garg",
+      contactEmail: "kartik@gmail.com",
+      contactNumber: "2345678901",
+    );
+    tvsmcon = new Contact(
+      contactName: "Aadish Godha",
+      contactEmail: "aadish@gmail.com",
+      contactNumber: "3456789012",
+    );
+
     plantation = new Event(
         category: avana,
         subCategory: donationDrive,
         eventID: 501,
         eventHeading: "Plantation Drive",
         eventDescription:
-            "The Avana Club will be organizing a plantation Drive in the city in collaboration with few other social organizations of city. Please give your valuable contribution by donating for the good cause.");
+            "The Avana Club will be organizing a plantation Drive in the city in collaboration with few other social organizations of city. Please give your valuable contribution by donating for the good cause.",
+        contact: plancon);
     enigmaQuiz = new Event(
         category: culturals,
         subCategory: quiz,
         eventID: 502,
         eventHeading: "Enigma Quiz",
         eventDescription:
-            "Enigma Quiz, one of its own kind will be organized by the Quiz Club of IIT Indore. Expected to receive 200+ participants from several institutes around the country. Contribute for award money or contact us for sponsorship.");
+            "Enigma Quiz, one of its own kind will be organized by the Quiz Club of IIT Indore. Expected to receive 200+ participants from several institutes around the country. Contribute for award money or contact us for sponsorship.",
+        contact: enigcon);
     tvsmInstrument = new Event(
         category: culturals,
         subCategory: music,
         eventID: 503,
         eventHeading: "T vs M Instrumental Competition",
         eventDescription:
-            "T vs M is the one of its own kind competition between IIT Indore and IIM Indore where both the premier institutes compete in various cultural competitions to receive the glory. Contribute for purchasing new instruments and contact us for sponsorship.");
+            "T vs M is the one of its own kind competition between IIT Indore and IIM Indore where both the premier institutes compete in various cultural competitions to receive the glory. Contribute for purchasing new instruments and contact us for sponsorship.",
+        contact: tvsmcon);
     events = [plantation, enigmaQuiz, tvsmInstrument];
   }
 
