@@ -1,4 +1,5 @@
 import 'package:PayBoProto/classes/Event.dart';
+import 'package:PayBoProto/screens/donation.dart';
 import 'package:flutter/material.dart';
 
 class EventEntry extends StatefulWidget {
@@ -48,7 +49,6 @@ class _EventEntryState extends State<EventEntry> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RaisedButton(
-                    onPressed: null,
                     elevation: 5.0,
                     child: Text(
                       "CONTRIBUTE",
@@ -58,6 +58,11 @@ class _EventEntryState extends State<EventEntry> {
                         color: Colors.white,
                       ),
                     ),
+                    onPressed: (){
+                      Navigator.push(context,MaterialPageRoute(
+                      builder: (context) =>
+                          donation(event.eventHeading)));
+                    },
                   ),
                   SizedBox(
                     width: 30.0,

@@ -1,4 +1,5 @@
 import 'package:PayBoProto/classes/Category.dart';
+import 'package:PayBoProto/screens/donation.dart';
 import 'package:flutter/material.dart';
 
 class TileEntry extends StatefulWidget {
@@ -29,10 +30,17 @@ class _TileEntryState extends State<TileEntry> {
   _createChildrenTiles(Category category) {
     return Column(
       children: [
-        for (var subcategory in category.subCategoryList) ListTile(
-          title: Text(subcategory.subCategoryName),
-
-        ),
+        for (var subcategory in category.subCategoryList)
+          ListTile(
+            title: Text(subcategory.subCategoryName),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          donation(subcategory.subCategoryName)));
+            },
+          ),
       ],
     );
   }

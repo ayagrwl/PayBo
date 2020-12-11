@@ -196,7 +196,8 @@ class _SliderScreenState extends State<SliderScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PayBoProto'),
+        title: Text('Pay Bo'),
+        centerTitle: true,
         bottom: TabBar(
           controller: tabController,
           tabs: <Widget>[

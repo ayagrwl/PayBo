@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PayBoProto',
+      title: 'Pay Bo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       home: SliderScreen(),
