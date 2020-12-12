@@ -213,6 +213,8 @@
         var tiles = document.getElementsByClassName("showTab");
         var tBody = document.getElementsByClassName("tBody")[0];
         var tHead = document.getElementsByClassName("tHead")[0];
+        var serverUrl = "https://payboo.herokuapp.com/admin";
+        // var serverUrl = "http://127.0.0.1:5000/admin";
 
         function cleanTable() {
             while (tHead.hasChildNodes()) {
@@ -243,7 +245,7 @@
             var mcat = this.parentElement.getAttribute("mcat");
             var scat = this.getAttribute("scat")
 
-            var origUrl = "http://localhost:5000/admin/" + String(mcat) + "/" + String(scat);
+            var origUrl = serverUrl + "/" + String(mcat) + "/" + String(scat);
             console.log(origUrl);
             fetch(origUrl)
                 .then(function (response) {
@@ -257,7 +259,7 @@
                 });
         }
         function fetchAggreg() {
-            fetch("http://localhost:5000/admin/aggreg")
+            fetch(serverUrl + "/aggreg")
                 .then(function (response) {
                     return response.json();
                 })
@@ -270,7 +272,7 @@
                 });
         }
         function fetchEvents() {
-            fetch("http://localhost:5000/admin/aggevent")
+            fetch(serverUrl + "/aggevent")
                 .then(function (response) {
                     return response.json();
                 })
@@ -281,6 +283,12 @@
                     console.log("Error: " + error);
                 });
         }
+        function fillTable(){
+            if(tBody.childNodes.length == 0){
+                nrow = tBody.insertRow()
+                nrow.insertCell(0).innerHTML = "No Entries to show";
+            }
+        }
 
         function showTiles(myJson) {
             cleanTable();
@@ -290,7 +298,6 @@
             head.insertCell(1).innerHTML = "Email";
             head.insertCell(2).innerHTML = "Amount";
             head.insertCell(3).innerHTML = "When";
-            head.insertCell(4).innerHTML = "Cause";
 
             for (ele of myJson) {
                 ele = JSON.parse(ele)
@@ -301,8 +308,8 @@
                 row.insertCell(1).innerHTML = ele['email'] || "Unavailable";
                 row.insertCell(2).innerHTML = ele['amount'];
                 row.insertCell(3).innerHTML = ele['tstamp']['$data'] || "eternity";
-                row.insertCell(4).innerHTML = ele['cause'] || "Undefined";
             }
+            fillTable();
         }
         function showAggregate(myJson) {
             cleanTable();
@@ -319,7 +326,7 @@
                 row.insertCell(0).innerHTML = ele['cause'];
                 row.insertCell(1).innerHTML = ele['totald'] || "0";
             }
-
+            fillTable();
         }
         function showEvents(myJson) {
             cleanTable();
@@ -329,13 +336,12 @@
             head.insertCell(1).innerHTML = "Total Donation";
 
             for (ele of myJson) {
-                // ele = JSON.parse(ele)
-                console.log(ele)
                 var row = tBody.insertRow(-1);
 
                 row.insertCell(0).innerHTML = ele['title'];
                 row.insertCell(1).innerHTML = ele['totald'] || "0";
             }
+            fillTable();
         }
 
         fetchAggreg();

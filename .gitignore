@@ -1,1 +1,7 @@
 venv
+.vscode/settings.json
+App/PayBoProto/android/local.properties
+Server/__pycache__/app.cpython-38.pyc
+Server/__pycache__/eml.cpython-38.pyc
+Server/__pycache__/wsgi.cpython-38.pyc
+Server/database/__pycache__/db.cpython-38.pyc

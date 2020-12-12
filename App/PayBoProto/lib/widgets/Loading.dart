@@ -9,12 +9,10 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Center(
-        child: SpinKitFadingCube(
-          color: Colors.blue,
-          size: 100.0,
-        ),
+    return Center(
+      child: SpinKitFadingCube(
+        color: Colors.blue,
+        size: 100.0,
       ),
     );
   }

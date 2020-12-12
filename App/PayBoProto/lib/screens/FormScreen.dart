@@ -3,8 +3,8 @@ import 'RazorpayScreen.dart';
 
 class FormScreen extends StatefulWidget {
   final String description;
-  final int cid, subid;
-  FormScreen(this.description, this.cid, this.subid);
+  final int cid, subid, identifier;
+  FormScreen(this.identifier, this.description, this.cid, this.subid);
   @override
   _FormScreenState createState() => _FormScreenState();
 }
@@ -198,7 +198,7 @@ class _FormScreenState extends State<FormScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => RazorpayScreen(
-                                          name, email, number, amount, widget.cid, widget.subid, widget.description)));
+                                          name, email, number, amount, widget.cid, widget.subid, widget.description, widget.identifier)));
                               _nameController.text = "";
                               _emailController.text = "";
                               _numberController.text = "";

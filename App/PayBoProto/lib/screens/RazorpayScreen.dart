@@ -7,9 +7,9 @@ import 'package:http/http.dart' as http;
 
 class RazorpayScreen extends StatefulWidget {
   final String name, email, number, amount, description;
-  final int cid, subid;
+  final int cid, subid, identifier;
   RazorpayScreen(this.name, this.email, this.number, this.amount, this.cid,
-      this.subid, this.description);
+      this.subid, this.description, this.identifier);
   @override
   _RazorpayScreenState createState() => _RazorpayScreenState();
 }
@@ -78,28 +78,38 @@ class _RazorpayScreenState extends State<RazorpayScreen> {
     String amount = widget.amount;
     String description = widget.description;
     String email = widget.email;
-    /* String uri = 'https://payboproto.herokuapp.com/donate?name=$name';
-    var res = http.get(uri);
-
-    if (res != null) {
-      Fluttertoast.showToast(msg: "Successful");
-      Navigator.pop(context);
-    } */
-    Map data = {
-      'donor': name,
-      'cat': cat,
-      'subcat': subcat,
-      'amount': amount,
-      'cause': description,
-      'email': email,
-    };
-    String body = json.encode(data);
-    String uri = 'https://payboproto.herokuapp.com/donate';
-    http.Response res = await http.post(
-      uri,
-      headers: {"Content-Type": "application/json"},
-      body: body,
-    );
+    http.Response res;
+    if (widget.identifier == 0) {
+      Map data = {
+        'donor': name,
+        'cat': cat,
+        'subcat': subcat,
+        'amount': amount,
+        'cause': description,
+        'email': email,
+      };
+      String body = json.encode(data);
+      String uri = 'https://payboo.herokuapp.com/donate';
+      res = await http.post(
+        uri,
+        headers: {"Content-Type": "application/json"},
+        body: body,
+      );
+    } else {
+      Map data = {
+        'title': description,
+        'amount': amount,
+        'name': name,
+        'email': email,
+      };
+      String body = json.encode(data);
+      String uri = 'https://payboo.herokuapp.com/donatevent';
+      res = await http.post(
+        uri,
+        headers: {"Content-Type": "application/json"},
+        body: body,
+      );
+    }
     if (res != null) {
       Fluttertoast.showToast(
           msg: "Transaction Details added to the database...");

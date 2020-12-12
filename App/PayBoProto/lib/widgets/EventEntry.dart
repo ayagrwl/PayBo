@@ -70,9 +70,7 @@ class _EventEntryState extends State<EventEntry> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => FormScreen(
-                                  widget.event.eventHeading,
-                                  widget.event.categoryID,
-                                  widget.event.subCategoryID)));
+                                  1, widget.event.eventHeading, 0, 0)));
                     },
                     elevation: 5.0,
                     child: Text(

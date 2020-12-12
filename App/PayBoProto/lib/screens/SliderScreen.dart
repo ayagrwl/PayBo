@@ -172,61 +172,26 @@ class _SliderScreenState extends State<SliderScreen>
     );
 
     getEventsList();
-    /*plantation = new Event(
-        categoryID: avana.categoryID,
-        subCategoryID: donationDrive.subCategoryID,
-        eventID: 501,
-        eventHeading: "Plantation Drive",
-        eventDescription:
-            "The Avana Club will be organizing a plantation Drive in the city in collaboration with few other social organizations of city. Please give your valuable contribution by donating for the good cause.",
-        contact: plancon);
-    enigmaQuiz = new Event(
-        categoryID: culturals.categoryID,
-        subCategoryID: quiz.subCategoryID,
-        eventID: 502,
-        eventHeading: "Enigma Quiz",
-        eventDescription:
-            "Enigma Quiz, one of its own kind will be organized by the Quiz Club of IIT Indore. Expected to receive 200+ participants from several institutes around the country. Contribute for award money or contact us for sponsorship.",
-        contact: enigcon);
-    tvsmInstrument = new Event(
-        categoryID: culturals.categoryID,
-        subCategoryID: music.subCategoryID,
-        eventID: 503,
-        eventHeading: "T vs M Instrumental Competition",
-        eventDescription:
-            "T vs M is the one of its own kind competition between IIT Indore and IIM Indore where both the premier institutes compete in various cultural competitions to receive the glory. Contribute for purchasing new instruments and contact us for sponsorship.",
-        contact: tvsmcon);
-    events = [plantation, enigmaQuiz, tvsmInstrument];*/
   }
 
   getEventsList() async {
-    String uri = 'https://payboproto.herokuapp.com/events';
+    String uri = 'https://payboo.herokuapp.com/events';
     var response = await http.get(uri);
     if (response != null) {
       var eventList = json.decode(response.body) as List;
       events = eventList.map((json) => Event.fromJSON(json)).toList();
     } else {
-      print("Farak Nhi pdta");
       plantation = new Event(
-          categoryID: avana.categoryID,
-          subCategoryID: donationDrive.subCategoryID,
-          eventID: 501,
           eventHeading: "Plantation Drive",
           eventDescription:
               "The Avana Club will be organizing a plantation Drive in the city in collaboration with few other social organizations of city. Please give your valuable contribution by donating for the good cause.",
           contact: plancon);
       enigmaQuiz = new Event(
-          categoryID: culturals.categoryID,
-          subCategoryID: quiz.subCategoryID,
-          eventID: 502,
           eventHeading: "Enigma Quiz",
           eventDescription:
               "Enigma Quiz, one of its own kind will be organized by the Quiz Club of IIT Indore. Expected to receive 200+ participants from several institutes around the country. Contribute for award money or contact us for sponsorship.",
           contact: enigcon);
       tvsmInstrument = new Event(
-          categoryID: culturals.categoryID,
-          subCategoryID: music.subCategoryID,
-          eventID: 503,
           eventHeading: "T vs M Instrumental Competition",
           eventDescription:
               "T vs M is the one of its own kind competition between IIT Indore and IIM Indore where both the premier institutes compete in various cultural competitions to receive the glory. Contribute for purchasing new instruments and contact us for sponsorship.",

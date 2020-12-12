@@ -35,7 +35,7 @@ class _TileEntryState extends State<TileEntry> {
             title: Text(subcategory.subCategoryName),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FormScreen(subcategory.subCategoryName, category.categoryID, subcategory.subCategoryID)));
+                  MaterialPageRoute(builder: (context) => FormScreen(0, subcategory.subCategoryName, category.categoryID, subcategory.subCategoryID)));
             },
           ),
       ],
