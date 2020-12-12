@@ -1,12 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:http/http.dart' as http;
 
 class RazorpayScreen extends StatefulWidget {
-  final String name, email, number, amount , description;
+  final String name, email, number, amount, description;
   final int cid, subid;
   RazorpayScreen(
-      this.name, this.email, this.number, this.amount, this.cid, this.subid , this.description);
+      this.name, this.email, this.number, this.amount, this.cid, this.subid, this.description);
   @override
   _RazorpayScreenState createState() => _RazorpayScreenState();
 }
@@ -50,7 +53,7 @@ class _RazorpayScreenState extends State<RazorpayScreen> {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_bQuZ77m8aNIUJk',
+      'key': 'rzp_test_jbNfQ5xTNrmGw1',
       'amount': num.parse(widget.amount) * 100,
       'name': 'Student Gymkhana',
       'description': widget.description,
@@ -67,8 +70,37 @@ class _RazorpayScreenState extends State<RazorpayScreen> {
     }
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+  Future _handlePaymentSuccess(PaymentSuccessResponse response) async {
     Fluttertoast.showToast(msg: "SUCCESS: " + response.paymentId);
+    String name = widget.name;
+    int cat = widget.cid;
+    int subcat = widget.subid;
+    
+    /* String uri = 'https://payboproto.herokuapp.com/donate?name=$name';
+    var res = http.get(uri);
+
+    if (res != null) {
+      Fluttertoast.showToast(msg: "Successful");
+      Navigator.pop(context);
+    } */
+    Map data = {'donor': name , 
+                'email' : widget.email , 
+                'number' : widget.number , 
+                'amount' : widget.amount , 
+                'cat' : cat , 
+                'subcat' : subcat , 
+                'cause' : widget.description};
+    String body = json.encode(data);
+    String uri = 'https://payboproto.herokuapp.com/donatePost';
+    http.Response res = await http.post(
+      uri,
+      headers: {"Content-Type": "application/json"},
+      body: body,
+    );
+    if (res != null) {
+      Fluttertoast.showToast(msg: "Successful");
+      Navigator.pop(context);
+    }
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
