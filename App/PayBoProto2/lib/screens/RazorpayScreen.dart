@@ -3,10 +3,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class RazorpayScreen extends StatefulWidget {
-  final String name, email, number, amount;
+  final String name, email, number, amount , description;
   final int cid, subid;
   RazorpayScreen(
-      this.name, this.email, this.number, this.amount, this.cid, this.subid);
+      this.name, this.email, this.number, this.amount, this.cid, this.subid , this.description);
   @override
   _RazorpayScreenState createState() => _RazorpayScreenState();
 }
@@ -52,8 +52,8 @@ class _RazorpayScreenState extends State<RazorpayScreen> {
     var options = {
       'key': 'rzp_test_bQuZ77m8aNIUJk',
       'amount': num.parse(widget.amount) * 100,
-      'name': widget.name,
-      //'description': widget.d,
+      'name': 'Student Gymkhana',
+      'description': widget.description,
       'prefill': {'contact': widget.number, 'email': widget.email},
       'external': {
         'wallets': ['paytm']
