@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:PayBoProto/classes/Category.dart';
 import 'package:PayBoProto/classes/Contact.dart';
 import 'package:PayBoProto/classes/Event.dart';
@@ -196,8 +198,11 @@ class _SliderScreenState extends State<SliderScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pay Bo'),
         centerTitle: true,
+        title: Text(
+          'PayBo',
+          style: TextStyle(fontSize: 25.0),
+        ),
         bottom: TabBar(
           controller: tabController,
           tabs: <Widget>[

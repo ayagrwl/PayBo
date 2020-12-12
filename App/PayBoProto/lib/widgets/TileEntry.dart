@@ -1,29 +1,28 @@
 import 'package:PayBoProto/classes/Category.dart';
-import 'package:PayBoProto/screens/donation.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/FormScreen.dart';
 
 class TileEntry extends StatefulWidget {
   final Category category;
   TileEntry(this.category);
   @override
-  _TileEntryState createState() => _TileEntryState(category);
+  _TileEntryState createState() => _TileEntryState();
 }
 
 class _TileEntryState extends State<TileEntry> {
-  Category category;
-  _TileEntryState(this.category);
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       tilePadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
       childrenPadding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 5.0),
       title: Text(
-        category.categoryName,
+        widget.category.categoryName,
         style: TextStyle(
           fontSize: 20,
         ),
       ),
-      children: [_createChildrenTiles(category)],
+      children: [_createChildrenTiles(widget.category)],
     );
   }
 
@@ -35,10 +34,10 @@ class _TileEntryState extends State<TileEntry> {
             title: Text(subcategory.subCategoryName),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          donation(subcategory.subCategoryName)));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FormScreen(subcategory.subCategoryName,category.categoryID, subcategory.subCategoryID ),
+              ));
             },
           ),
       ],

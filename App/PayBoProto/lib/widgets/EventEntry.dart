@@ -1,6 +1,8 @@
 import 'package:PayBoProto/classes/Event.dart';
-import 'package:PayBoProto/screens/donation.dart';
+import 'package:PayBoProto/screens/FormScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class EventEntry extends StatefulWidget {
   final Event event;
@@ -29,7 +31,7 @@ class _EventEntryState extends State<EventEntry> {
                 height: 10.0,
               ),
               Text(
-                event.eventHeading,
+                widget.event.eventHeading,
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
@@ -38,7 +40,7 @@ class _EventEntryState extends State<EventEntry> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
-                  event.eventDescription,
+                  widget.event.eventDescription,
                   style: TextStyle(
                     fontSize: 15.0,
                   ),
@@ -49,6 +51,15 @@ class _EventEntryState extends State<EventEntry> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RaisedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FormScreen(
+                                  widget.event.eventHeading,
+                                  widget.event.category.categoryID,
+                                  widget.event.subCategory.subCategoryID),),);
+                    },
                     elevation: 5.0,
                     child: Text(
                       "CONTRIBUTE",
@@ -58,11 +69,7 @@ class _EventEntryState extends State<EventEntry> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: (){
-                      Navigator.push(context,MaterialPageRoute(
-                      builder: (context) =>
-                          donation(event.eventHeading)));
-                    },
+                    
                   ),
                   SizedBox(
                     width: 30.0,
@@ -71,16 +78,47 @@ class _EventEntryState extends State<EventEntry> {
                     onPressed: () => showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
-                        title: Center(child: Text('CONTACT US',style: TextStyle(fontSize: 20.0),)),
+                        title: Center(
+                            child: Text(
+                          'CONTACT US',
+                          style: TextStyle(fontSize: 20.0),
+                        )),
                         content: Container(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text("Name : " + event.contact.contactName,),
-                              SizedBox(height: 10.0,),
-                              Text("Email : " + event.contact.contactEmail,),
-                              SizedBox(height: 10.0,),
-                              Text("Phone : " + event.contact.contactNumber,),
+                              Text(
+                                "Name : " + event.contact.contactName,
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Email : ",
+                                  ),
+                                  InkWell(
+                                    child: Text(
+                                      event.contact.contactEmail,
+                                      style: TextStyle(
+                                        color: Colors.blueAccent,
+                                      ),
+                                    ),
+                                    onTap: () => {
+                                      launch("mailto:" +
+                                          event.contact.contactEmail),
+                                    },
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                "Phone : " + event.contact.contactNumber,
+                              ),
                             ],
                           ),
                         ),
