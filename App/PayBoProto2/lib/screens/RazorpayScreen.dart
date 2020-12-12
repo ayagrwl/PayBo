@@ -5,7 +5,8 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 class RazorpayScreen extends StatefulWidget {
   final String name, email, number, amount;
   final int cid, subid;
-  RazorpayScreen(this.name, this.email, this.number, this.amount, this.cid, this.subid);
+  RazorpayScreen(
+      this.name, this.email, this.number, this.amount, this.cid, this.subid);
   @override
   _RazorpayScreenState createState() => _RazorpayScreenState();
 }

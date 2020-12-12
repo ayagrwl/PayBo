@@ -199,7 +199,10 @@ class _SliderScreenState extends State<SliderScreen>
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('PayBo', style: TextStyle(fontSize: 25.0),),
+        title: Text(
+          'PayBo',
+          style: TextStyle(fontSize: 25.0),
+        ),
         bottom: TabBar(
           controller: tabController,
           tabs: <Widget>[

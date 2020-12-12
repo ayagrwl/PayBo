@@ -121,7 +121,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.1"
-<<<<<<< HEAD
   pedantic:
     dependency: transitive
     description:
@@ -129,7 +128,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.2"
-=======
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -137,7 +135,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
->>>>>>> 427dd2a173c27f9a2212bf9526f842c94835e028
   razorpay_flutter:
     dependency: "direct main"
     description:

@@ -3,14 +3,17 @@ import 'package:PayBoProto/screens/FormScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
 class EventEntry extends StatefulWidget {
   final Event event;
   EventEntry(this.event);
   @override
-  _EventEntryState createState() => _EventEntryState();
+  _EventEntryState createState() => _EventEntryState(event);
 }
 
 class _EventEntryState extends State<EventEntry> {
+  Event event;
+  _EventEntryState(this.event);
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +55,10 @@ class _EventEntryState extends State<EventEntry> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  FormScreen(widget.event.eventHeading, widget.event.category.categoryID, widget.event.subCategory.subCategoryID)));
+                              builder: (context) => FormScreen(
+                                  widget.event.eventHeading,
+                                  widget.event.category.categoryID,
+                                  widget.event.subCategory.subCategoryID),),);
                     },
                     elevation: 5.0,
                     child: Text(
@@ -64,17 +69,7 @@ class _EventEntryState extends State<EventEntry> {
                         color: Colors.white,
                       ),
                     ),
-<<<<<<< HEAD
-=======
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Donation(event.eventHeading),
-                        ),
-                      );
-                    },
->>>>>>> 427dd2a173c27f9a2212bf9526f842c94835e028
+                    
                   ),
                   SizedBox(
                     width: 30.0,
@@ -92,32 +87,13 @@ class _EventEntryState extends State<EventEntry> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-<<<<<<< HEAD
-                              Row(
-                                children: [
-                                  Text(
-                                    "Name : " + widget.event.contact.contactName,
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                    ),
-                                  ),
-                                ],
-=======
                               Text(
                                 "Name : " + event.contact.contactName,
->>>>>>> 427dd2a173c27f9a2212bf9526f842c94835e028
                               ),
                               SizedBox(
                                 height: 10.0,
                               ),
                               Row(
-<<<<<<< HEAD
-                                children: [
-                                  Icon(Icons.email),
-                                  SizedBox(width: 5.0,),
-                                  Text(
-                                    widget.event.contact.contactEmail,
-=======
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
@@ -134,26 +110,14 @@ class _EventEntryState extends State<EventEntry> {
                                       launch("mailto:" +
                                           event.contact.contactEmail),
                                     },
->>>>>>> 427dd2a173c27f9a2212bf9526f842c94835e028
                                   ),
                                 ],
                               ),
                               SizedBox(
                                 height: 10.0,
                               ),
-<<<<<<< HEAD
-                              Row(
-                                children: [
-                                  Icon(Icons.phone),
-                                  SizedBox(width: 5.0,),
-                                  Text(
-                                    widget.event.contact.contactNumber,
-                                  ),
-                                ],
-=======
                               Text(
                                 "Phone : " + event.contact.contactNumber,
->>>>>>> 427dd2a173c27f9a2212bf9526f842c94835e028
                               ),
                             ],
                           ),

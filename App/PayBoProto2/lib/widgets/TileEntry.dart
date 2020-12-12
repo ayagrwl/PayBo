@@ -1,6 +1,7 @@
 import 'package:PayBoProto/classes/Category.dart';
-import 'package:PayBoProto/screens/FormScreen.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/FormScreen.dart';
 
 class TileEntry extends StatefulWidget {
   final Category category;
@@ -10,7 +11,6 @@ class TileEntry extends StatefulWidget {
 }
 
 class _TileEntryState extends State<TileEntry> {
-
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -33,17 +33,11 @@ class _TileEntryState extends State<TileEntry> {
           ListTile(
             title: Text(subcategory.subCategoryName),
             onTap: () {
-<<<<<<< HEAD
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FormScreen(subcategory.subCategoryName, category.categoryID, subcategory.subCategoryID)));
-=======
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Donation(subcategory.subCategoryName),
-                ),
-              );
->>>>>>> 427dd2a173c27f9a2212bf9526f842c94835e028
+                  builder: (context) => FormScreen(subcategory.subCategoryName,category.categoryID, subcategory.subCategoryID ),
+              ));
             },
           ),
       ],

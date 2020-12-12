@@ -197,7 +197,12 @@ class _FormScreenState extends State<FormScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => RazorpayScreen(
-                                          name, email, number, amount, widget.cid, widget.subid)));
+                                          name,
+                                          email,
+                                          number,
+                                          amount,
+                                          widget.cid,
+                                          widget.subid)));
                               _nameController.text = "";
                               _emailController.text = "";
                               _numberController.text = "";
