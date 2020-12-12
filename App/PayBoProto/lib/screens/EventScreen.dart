@@ -6,18 +6,16 @@ class EventScreen extends StatefulWidget {
   final List<Event> events;
   EventScreen(this.events);
   @override
-  _EventScreenState createState() => _EventScreenState(events);
+  _EventScreenState createState() => _EventScreenState();
 }
 
 class _EventScreenState extends State<EventScreen> {
-  List<Event> events;
-  _EventScreenState(this.events);
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (BuildContext context, int index) => EventEntry(events[index]),
-      itemCount: events.length,
+      itemBuilder: (BuildContext context, int index) =>
+          EventEntry(widget.events[index]),
+      itemCount: widget.events.length,
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
     );
   }
