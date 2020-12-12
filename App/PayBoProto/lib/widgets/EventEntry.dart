@@ -3,17 +3,31 @@ import 'package:PayBoProto/screens/FormScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class EventEntry extends StatefulWidget {
   final Event event;
   EventEntry(this.event);
   @override
-  _EventEntryState createState() => _EventEntryState(event);
+  _EventEntryState createState() => _EventEntryState();
 }
 
 class _EventEntryState extends State<EventEntry> {
-  Event event;
-  _EventEntryState(this.event);
+  Future _launchEmail(String email) async {
+    String emailUrl = "mailto:$email";
+    if (await canLaunch(emailUrl)) {
+      launch(emailUrl);
+    } else {
+      throw "Error in opening email app";
+    }
+  }
+
+  Future _launchTel(String number) async {
+    String emailUrl = "tel:$number";
+    if (await canLaunch(emailUrl)) {
+      launch(emailUrl);
+    } else {
+      throw "Error in opening email app";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +71,8 @@ class _EventEntryState extends State<EventEntry> {
                           MaterialPageRoute(
                               builder: (context) => FormScreen(
                                   widget.event.eventHeading,
-                                  widget.event.category.categoryID,
-                                  widget.event.subCategory.subCategoryID),),);
+                                  widget.event.categoryID,
+                                  widget.event.subCategoryID)));
                     },
                     elevation: 5.0,
                     child: Text(
@@ -69,7 +83,6 @@ class _EventEntryState extends State<EventEntry> {
                         color: Colors.white,
                       ),
                     ),
-                    
                   ),
                   SizedBox(
                     width: 30.0,
@@ -87,37 +100,55 @@ class _EventEntryState extends State<EventEntry> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
-                                "Name : " + event.contact.contactName,
-                              ),
-                              SizedBox(
-                                height: 10.0,
-                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Email : ",
-                                  ),
-                                  InkWell(
-                                    child: Text(
-                                      event.contact.contactEmail,
-                                      style: TextStyle(
-                                        color: Colors.blueAccent,
-                                      ),
+                                    "Name : " +
+                                        widget.event.contact.contactName,
+                                    style: TextStyle(
+                                      fontSize: 15.0,
                                     ),
-                                    onTap: () => {
-                                      launch("mailto:" +
-                                          event.contact.contactEmail),
-                                    },
                                   ),
                                 ],
                               ),
                               SizedBox(
                                 height: 10.0,
                               ),
-                              Text(
-                                "Phone : " + event.contact.contactNumber,
+                              InkWell(
+                                onTap: () => _launchEmail(
+                                    widget.event.contact.contactEmail),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.email),
+                                    SizedBox(
+                                      width: 5.0,
+                                    ),
+                                    Text(
+                                      widget.event.contact.contactEmail,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              InkWell(
+                                onTap: () => _launchTel(
+                                    widget.event.contact.contactNumber),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.phone),
+                                    SizedBox(
+                                      width: 5.0,
+                                    ),
+                                    Text(
+                                      widget.event.contact.contactNumber,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),

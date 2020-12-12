@@ -1,6 +1,9 @@
 <html>
 
 <head>
+
+    <meta charset="UTF-8">
+
     <title>
         PayBo Admin Records
     </title>
@@ -10,18 +13,18 @@
 <style>
     .content-table {
         border-collapse: collapse;
-        margin: 25px 0;
+        margin: 25px auto;
         font-size: 0.9em;
-        min-width: 400px;
+        min-width: 800px;
         border-radius: 5px 5px 0 0;
         overflow: hidden;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        text-align: center;
     }
 
     .content-table thead tr {
         background-color: #009879;
         color: #ffffff;
-        text-align: left;
         font-weight: bold;
     }
 
@@ -41,41 +44,303 @@
     .content-table tbody tr:last-of-type {
         border-bottom: thick solid #009879;
     }
+
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        font-family: Arial;
+    }
+
+    /* Links inside the navbar */
+    .navbar a {
+        float: left;
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .EventsTab:hover {
+        cursor: pointer;
+    }
+
+    .AggregTab:hover {
+        cursor: pointer;
+    }
+
+    /* The dropdown container */
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+
+    /* Dropdown button */
+    .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        /* Important for vertical align on mobile phones */
+        margin: 0;
+        /* Important for vertical align on mobile phones */
+    }
+
+    /* Add a red background color to navbar links on hover */
+    .navbar a:hover,
+    .dropdown:hover .dropbtn {
+        background-color: red;
+    }
+
+    /* Dropdown content (hidden by default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    /* Add a grey background color to dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .showTab:hover {
+        cursor: pointer;
+    }
 </style>
 
 <body>
-    <table class="content-table">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Points</th>
-                <th>Team</th>
+    <div class="navbar">
+        <a class="AggregTab">Aggregte</a>
+        <a class="EventsTab">Events</a>
+        <div class="dropdown">
+            <button class="dropbtn">AVANA
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" mcat="3">
+                <a class="showTab" scat="101">ORM</a>
+                <a class="showTab" scat="102">Donation</a>
+                <a class="showTab" scat="151">Kerala</a>
+                <a class="showTab" scat="152">Bihar</a>
+            </div>
+        </div>
 
+        <div class="dropdown">
+            <button class="dropbtn">Technicals
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" mcat="1">
+                <a class="showTab" scat="11">Robotics</a>
+                <a class="showTab" scat="12">Programming</a>
+                <a class="showTab" scat="13">Aeromodelling</a>
+                <a class="showTab" scat="14">DSC iiti</a>
+                <a class="showTab" scat="15">Cynaptics</a>
+                <a class="showTab" scat="16">Elec Center</a>
+                <a class="showTab" scat="17">Engines ad Daemons</a>
+                <a class="showTab" scat="18">CAE Club</a>
+                <a class="showTab" scat="19">Concreate Club</a>
+                <a class="showTab" scat="20">Metacryst Club</a>
+                <a class="showTab" scat="21">CFA Club</a>
+                <a class="showTab" scat="22">Astro Club</a>
+                <a class="showTab" scat="23">Tech Fest</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Culturals
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" mcat="2">
+                <a class="showTab" scat="51">Dance</a>
+                <a class="showTab" scat="52">Music</a>
+                <a class="showTab" scat="53">Drama</a>
+                <a class="showTab" scat="54">Kalakriti</a>
+                <a class="showTab" scat="55">DOCM</a>
+                <a class="showTab" scat="56">DebSoc</a>
+                <a class="showTab" scat="57">Lit Club</a>
+                <a class="showTab" scat="58">Quiz Club</a>
+                <a class="showTab" scat="59">MUN iiti</a>
+                <a class="showTab" scat="60">Fluxus</a>
+            </div>
+        </div>
+
+    </div>
+    <table class="content-table">
+        <thead class="tHead">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Amount</th>
+                <th>When</th>
+                <th>Cause</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="tBody">
             <tr>
-                <td>1</td>
-                <td>Dom</td>
-                <td>6000</td>
-                <td>dcode</td>
+                <td>Ayush</td>
+                <td>
+                    <a href="mailto:val@example.com">
+                        val@example.com
+                    </a>
+                </td>
+                <td>1001</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Melissa</td>
-                <td>5150</td>
-                <td>student</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Jone</td>
-                <td>5123</td>
-                <td>docsop</td>
-            </tr>
-
         </tbody>
     </table>
+
+    <script>
+        console.log("JS init");
+        var tiles = document.getElementsByClassName("showTab");
+        var tBody = document.getElementsByClassName("tBody")[0];
+        var tHead = document.getElementsByClassName("tHead")[0];
+
+        function cleanTable() {
+            while (tHead.hasChildNodes()) {
+                tHead.removeChild(tHead.firstChild)
+            }
+            while (tBody.hasChildNodes()) {
+                tBody.removeChild(tBody.firstChild)
+            }
+        }
+        function createEvents() {
+            // add el to aggregtab
+            (document.getElementsByClassName("AggregTab")[0]).addEventListener("click", () => fetchAggreg());
+
+            // add el to eventTab
+            (document.getElementsByClassName("EventsTab")[0]).addEventListener("click", () => fetchEvents());
+
+            // add el to tiles.
+            for (ele of tiles) {
+                var mcat = (tiles[0]).parentElement.getAttribute("mcat");
+                var scat = ele.getAttribute("scat")
+                ele.addEventListener("click", fetchTiles);
+            }
+        }
+
+        function fetchTiles() {
+            console.log(this);
+
+            var mcat = this.parentElement.getAttribute("mcat");
+            var scat = this.getAttribute("scat")
+
+            var origUrl = "http://localhost:5000/admin/" + String(mcat) + "/" + String(scat);
+            console.log(origUrl);
+            fetch(origUrl)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    showTiles(myJson)
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+        function fetchAggreg() {
+            fetch("http://localhost:5000/admin/aggreg")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    console.log(myJson)
+                    showAggregate(myJson)
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+        function fetchEvents() {
+            fetch("http://localhost:5000/admin/aggevent")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    showEvents(myJson)
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+        }
+
+        function showTiles(myJson) {
+            cleanTable();
+
+            head = tHead.insertRow()
+            head.insertCell(0).innerHTML = "Name";
+            head.insertCell(1).innerHTML = "Email";
+            head.insertCell(2).innerHTML = "Amount";
+            head.insertCell(3).innerHTML = "When";
+            head.insertCell(4).innerHTML = "Cause";
+
+            for (ele of myJson) {
+                ele = JSON.parse(ele)
+                console.log(ele)
+                var row = tBody.insertRow(-1);
+
+                row.insertCell(0).innerHTML = ele['name'];
+                row.insertCell(1).innerHTML = ele['email'] || "Unavailable";
+                row.insertCell(2).innerHTML = ele['amount'];
+                row.insertCell(3).innerHTML = ele['tstamp']['$data'] || "eternity";
+                row.insertCell(4).innerHTML = ele['cause'] || "Undefined";
+            }
+        }
+        function showAggregate(myJson) {
+            cleanTable();
+
+            head = tHead.insertRow()
+            head.insertCell(0).innerHTML = "Cause";
+            head.insertCell(1).innerHTML = "Total Donation";
+
+            for (ele of myJson) {
+                // ele = JSON.parse(ele)
+                console.log(ele)
+                var row = tBody.insertRow(-1);
+
+                row.insertCell(0).innerHTML = ele['cause'];
+                row.insertCell(1).innerHTML = ele['totald'] || "0";
+            }
+
+        }
+        function showEvents(myJson) {
+            cleanTable();
+
+            head = tHead.insertRow()
+            head.insertCell(0).innerHTML = "Title";
+            head.insertCell(1).innerHTML = "Total Donation";
+
+            for (ele of myJson) {
+                // ele = JSON.parse(ele)
+                console.log(ele)
+                var row = tBody.insertRow(-1);
+
+                row.insertCell(0).innerHTML = ele['title'];
+                row.insertCell(1).innerHTML = ele['totald'] || "0";
+            }
+        }
+
+        fetchAggreg();
+        createEvents();
+    </script>
 </body>
 
 </html>

@@ -46,10 +46,10 @@ class _FormScreenState extends State<FormScreen> {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.70,
+          height: MediaQuery.of(context).size.height * 0.82,
           decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(25.0)),
+              borderRadius: BorderRadius.circular(30.0)),
           child: Form(
             key: _formKey,
             child: Padding(
@@ -68,7 +68,7 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
                       border: Border.all(color: Colors.white70, width: 0.5),
                       color: Colors.black.withOpacity(0.5),
                     ),
@@ -79,6 +79,7 @@ class _FormScreenState extends State<FormScreen> {
                         }
                         return null;
                       },
+                      textCapitalization: TextCapitalization.words,
                       controller: _nameController,
                       decoration: InputDecoration(
                         hintText: 'Enter your name',
@@ -96,7 +97,7 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
                       border: Border.all(color: Colors.white70, width: 0.5),
                       color: Colors.black.withOpacity(0.5),
                     ),
@@ -126,7 +127,7 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
                       border: Border.all(color: Colors.white70, width: 0.5),
                       color: Colors.black.withOpacity(0.5),
                     ),
@@ -156,7 +157,7 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(30.0)),
                       border: Border.all(color: Colors.white70, width: 0.5),
                       color: Colors.black.withOpacity(0.5),
                     ),
@@ -197,12 +198,7 @@ class _FormScreenState extends State<FormScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => RazorpayScreen(
-                                          name,
-                                          email,
-                                          number,
-                                          amount,
-                                          widget.cid,
-                                          widget.subid,widget.description)));
+                                          name, email, number, amount, widget.cid, widget.subid, widget.description)));
                               _nameController.text = "";
                               _emailController.text = "";
                               _numberController.text = "";

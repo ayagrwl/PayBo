@@ -1,11 +1,13 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:PayBoProto/classes/Category.dart';
 import 'package:PayBoProto/classes/Contact.dart';
 import 'package:PayBoProto/classes/Event.dart';
 import 'package:PayBoProto/classes/SubCategory.dart';
+import 'package:PayBoProto/widgets/Loading.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import 'CategoryScreen.dart';
 import 'EventScreen.dart';
 
@@ -16,6 +18,7 @@ class SliderScreen extends StatefulWidget {
 
 class _SliderScreenState extends State<SliderScreen>
     with SingleTickerProviderStateMixin {
+  bool _listLoaded;
   TabController tabController;
   Category technicals, culturals, avana, donation;
   SubCategory robotics,
@@ -55,6 +58,7 @@ class _SliderScreenState extends State<SliderScreen>
   @override
   void initState() {
     super.initState();
+    _listLoaded = false;
     tabController = new TabController(length: 2, initialIndex: 0, vsync: this);
     robotics =
         new SubCategory(subCategoryID: 11, subCategoryName: "Robtics Club");
@@ -167,31 +171,71 @@ class _SliderScreenState extends State<SliderScreen>
       contactNumber: "3456789012",
     );
 
-    plantation = new Event(
-        category: avana,
-        subCategory: donationDrive,
+    getEventsList();
+    /*plantation = new Event(
+        categoryID: avana.categoryID,
+        subCategoryID: donationDrive.subCategoryID,
         eventID: 501,
         eventHeading: "Plantation Drive",
         eventDescription:
             "The Avana Club will be organizing a plantation Drive in the city in collaboration with few other social organizations of city. Please give your valuable contribution by donating for the good cause.",
         contact: plancon);
     enigmaQuiz = new Event(
-        category: culturals,
-        subCategory: quiz,
+        categoryID: culturals.categoryID,
+        subCategoryID: quiz.subCategoryID,
         eventID: 502,
         eventHeading: "Enigma Quiz",
         eventDescription:
             "Enigma Quiz, one of its own kind will be organized by the Quiz Club of IIT Indore. Expected to receive 200+ participants from several institutes around the country. Contribute for award money or contact us for sponsorship.",
         contact: enigcon);
     tvsmInstrument = new Event(
-        category: culturals,
-        subCategory: music,
+        categoryID: culturals.categoryID,
+        subCategoryID: music.subCategoryID,
         eventID: 503,
         eventHeading: "T vs M Instrumental Competition",
         eventDescription:
             "T vs M is the one of its own kind competition between IIT Indore and IIM Indore where both the premier institutes compete in various cultural competitions to receive the glory. Contribute for purchasing new instruments and contact us for sponsorship.",
         contact: tvsmcon);
-    events = [plantation, enigmaQuiz, tvsmInstrument];
+    events = [plantation, enigmaQuiz, tvsmInstrument];*/
+  }
+
+  getEventsList() async {
+    String uri = 'https://payboproto.herokuapp.com/events';
+    var response = await http.get(uri);
+    if (response != null) {
+      var eventList = json.decode(response.body) as List;
+      events = eventList.map((json) => Event.fromJSON(json)).toList();
+    } else {
+      print("Farak Nhi pdta");
+      plantation = new Event(
+          categoryID: avana.categoryID,
+          subCategoryID: donationDrive.subCategoryID,
+          eventID: 501,
+          eventHeading: "Plantation Drive",
+          eventDescription:
+              "The Avana Club will be organizing a plantation Drive in the city in collaboration with few other social organizations of city. Please give your valuable contribution by donating for the good cause.",
+          contact: plancon);
+      enigmaQuiz = new Event(
+          categoryID: culturals.categoryID,
+          subCategoryID: quiz.subCategoryID,
+          eventID: 502,
+          eventHeading: "Enigma Quiz",
+          eventDescription:
+              "Enigma Quiz, one of its own kind will be organized by the Quiz Club of IIT Indore. Expected to receive 200+ participants from several institutes around the country. Contribute for award money or contact us for sponsorship.",
+          contact: enigcon);
+      tvsmInstrument = new Event(
+          categoryID: culturals.categoryID,
+          subCategoryID: music.subCategoryID,
+          eventID: 503,
+          eventHeading: "T vs M Instrumental Competition",
+          eventDescription:
+              "T vs M is the one of its own kind competition between IIT Indore and IIM Indore where both the premier institutes compete in various cultural competitions to receive the glory. Contribute for purchasing new instruments and contact us for sponsorship.",
+          contact: tvsmcon);
+      events = [plantation, enigmaQuiz, tvsmInstrument];
+    }
+    setState(() {
+      _listLoaded = true;
+    });
   }
 
   @override
@@ -217,7 +261,10 @@ class _SliderScreenState extends State<SliderScreen>
       ),
       body: TabBarView(
         controller: tabController,
-        children: <Widget>[CategoryScreen(categories), EventScreen(events)],
+        children: <Widget>[
+          CategoryScreen(categories),
+          _listLoaded ? EventScreen(events) : Loading()
+        ],
       ),
     );
   }
