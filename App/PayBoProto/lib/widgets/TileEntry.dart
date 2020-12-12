@@ -35,10 +35,11 @@ class _TileEntryState extends State<TileEntry> {
             title: Text(subcategory.subCategoryName),
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          donation(subcategory.subCategoryName)));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Donation(subcategory.subCategoryName),
+                ),
+              );
             },
           ),
       ],

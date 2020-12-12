@@ -16,7 +16,8 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (BuildContext context, int index) => EventEntry(events[index]),
+      itemBuilder: (BuildContext context, int index) =>
+          EventEntry(events[index]),
       itemCount: events.length,
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
     );

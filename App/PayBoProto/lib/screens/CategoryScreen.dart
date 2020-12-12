@@ -133,13 +133,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: categories.length,
-        itemBuilder: (BuildContext context, int index) =>
-            TileEntry(categories[index]),
-        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-      ),
+    return ListView.builder(
+      itemCount: categories.length,
+      itemBuilder: (BuildContext context, int index) =>
+          TileEntry(categories[index]),
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
     );
   }
 }

@@ -3,15 +3,14 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class donation extends StatefulWidget {
+class Donation extends StatefulWidget {
   final String d;
-  donation(this.d);
+  Donation(this.d);
   @override
-  _donationState createState() => _donationState();
+  _DonationState createState() => _DonationState();
 }
 
-class _donationState extends State<donation> {
-  
+class _DonationState extends State<Donation> {
   Razorpay _razorpay;
   final name = TextEditingController();
   final email = TextEditingController();
@@ -36,7 +35,7 @@ class _donationState extends State<donation> {
               child: Card(
                 elevation: 5,
                 child: Center(
-                  child: Text('Donation for '+widget.d),
+                  child: Text('Donation for ' + widget.d),
                 ),
               ),
             ),

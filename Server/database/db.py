@@ -110,17 +110,20 @@ def getDonations():
 
 
 def donate(main_cause, sub_cause, name, amount, cause=""):
-    if main_cause == 1: 
+    if main_cause == "1": 
         docref = Tech.objects(cause=sub_cause).first()
-    elif main_cause == 2:
+    elif main_cause == "2":
         docref = Cult.objects(cause=sub_cause).first()
-    elif main_cause == 3:
+    elif main_cause == "3":
         docref = Avana.objects(cause=sub_cause).first()
-    elif main_cause == 4:
+    elif main_cause == "4":
         docref = Events.objects(cause=sub_cause).first()
     else:
         print("Unidentified cause: {0}".format(main_cause)) 
+        return False
 
     donobj = Donation(name=name, amount=amount, cause=cause)
     docref.donations.append(donobj)
     docref.save()
+    print("Donation Saved!!")
+    return True
