@@ -133,6 +133,7 @@
 <body>
     <div class="navbar">
         <a class="AggregTab">Aggregte</a>
+        <a href="/addEvent">Add Events</a>
         <a class="EventsTab">Events</a>
         <div class="dropdown">
             <button class="dropbtn">AVANA
@@ -192,7 +193,6 @@
                 <th>Email</th>
                 <th>Amount</th>
                 <th>When</th>
-                <th>Cause</th>
             </tr>
         </thead>
         <tbody class="tBody">
@@ -240,8 +240,6 @@
         }
 
         function fetchTiles() {
-            console.log(this);
-
             var mcat = this.parentElement.getAttribute("mcat");
             var scat = this.getAttribute("scat")
 
