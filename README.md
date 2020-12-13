@@ -15,12 +15,15 @@ Paybo is an all in one donation app, not only for institute, but for anyone who 
 ##### You can also:
   - Collect allowances or money for In-house Events.
   - Get informatin about current events going.
+  - Receive mail after donation is saved in database.
+
+## Running
+Grab the latest release from git repo.
+The Admin dashboard can be found [here](https://payboo.herokuapp.com/admin).
 
 # Why PayBo
-> Our institute needed a payment solution for donation as well as fund collection for Student Gymkhana. There was also a need for a portal where anyone can donate money without worries about misuse. Through Paybo, we can reach everyone, including Alumnis, that wish to donate to their college.
+> Our institute needed a payment solution for donation as well as fund collection for Student Body Clubs. There was also a need for a portal where anyone can donate money without worries about misuse. Through Paybo, we can reach everyone, including Alumnis, that wish to donate to their college.
 Paybo is also meant to provide a fund for emergencies.
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
 
 ### Tech Stack
 Paybo was made with love using various technologies combined
